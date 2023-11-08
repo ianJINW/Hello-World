@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let songPlace = song.getAttribute('src')
   const element = document.querySelectorAll('.fa-bars')
   const mainM = document.querySelector('.mainM')
+  let search = document.querySelector('.search')
+  const submit = document.querySelector('.submit')
+  let searchList = document.querySelectorAll('.audio-name')
 
   progress.max = song.duration
   progress.value = song.currentTime
@@ -48,9 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (list.style.display === 'none') {
       list.style.display = 'block'
       mainM.style.display = 'none'
+      search.textContent = ' '
     } else {
       list.style.display = 'none'
       mainM.style.display = 'block'
+      search.textContent = ' '
     }
   }
   function playPause () {
@@ -64,6 +69,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function Search () {
+    const searchWords = search.value.toLowerCase()
+    searchList.forEach(item => {
+      const items = item.textContent.toLowerCase()
+      if (items.includes(searchWords)) {
+        item.parentElement.style.display = 'list-item'
+      } else {
+        item.parentElement.style.display = 'none'
+      }
+    })
+  }
+
   list.addEventListener('click', activateItem)
 
   element.forEach(e => {
@@ -71,4 +88,5 @@ document.addEventListener('DOMContentLoaded', () => {
   })
   musa.addEventListener('click', playPause)
   shuffle.addEventListener('click', shuffleRepeat)
+  submit.addEventListener('click', Search)
 })

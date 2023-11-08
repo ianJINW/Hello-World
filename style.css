@@ -26,6 +26,15 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+.search {
+  border-radius: 20%;
+  background: local;
+}
+.submit {
+  cursor: pointer;
+  background: local;
+  border-radius: 22%;
+}
 
 .music {
   gap: 10px;
