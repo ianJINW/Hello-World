@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Musa Music 2.0</title>
+    <link
+      rel="shortcut icon"
+      href="/Desktop/bvWaqj8gNrk.jpg"
+      type="image/jpg"
+    />
+    <style>
+      body {
+        background: radial-gradient(
+          rgb(182, 127, 9),
+          rgb(228, 4, 179),
+          rgb(21, 109, 160)
+        );
+        text-align: center;
+        color: antiquewhite;
+        -webkit-user-select: none;
+        user-select: none;
+        overflow: hidden;
+      }
+
+      .title {
+        height: 10px;
+        margin: 0 0 1% 0;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+          'Lucida Sans', Arial, sans-serif;
+      }
+
+      .music {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 10px;
+        height: 50%;
+        align-items: flex-start;
+        padding: 5px;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 50%;
+        width: 100%;
+        margin: 0 0 40% 0;
+      }
+
+      a img {
+        width: 3%;
+      }
+
+      .visual {
+        display: flex;
+        justify-content: center;
+        width: 70%;
+        text-align: center;
+        height: 70%;
+      }
+
+      .img1 {
+        width: 40%;
+        justify-self: center;
+        border-radius: 50%;
+        object-fit: fill;
+        object-position: center;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .caret {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 10% 0 10%;
+      }
+
+      .caret img:active {
+        width: 2%;
+      }
+
+      .caret img {
+        width: 3%;
+        margin: 0 10% 0 10%;
+        cursor: pointer;
+      }
+
+      .caret img:nth-child(3) {
+        width: 4%;
+      }
+
+      .music-list img {
+        width: 10%;
+        margin: 0 50px 0 50px;
+        cursor: pointer;
+      }
+
+      .aud {
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+        cursor: pointer;
+      }
+
+      .aud:active {
+        padding: 10px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+          sans-serif;
+      }
+
+      #progress {
+        appearance: none;
+        width: 80%;
+        height: 5px;
+        background: #492436;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .music-list::-webkit-scrollbar-track {
+        border-radius: 90px;
+        width: 5px;
+      }
+
+      .music-list::-webkit-scrollbar-thumb {
+        background-color: #661;
+        border-radius: 5px;
+        width: 5px;
+      }
+
+      .music-list::-webkit-scrollbar-thumb:hover {
+        background-color: #fff;
+      }
+
+      .music-list::-webkit-scrollbar {
+        width: 10px;
+        background-color: antiquewhite;
+      }
+
+      .music-list::-webkit-scrollbar-thumb:hover {
+        visibility: visible;
+      }
+
+      #progress::-webkit-slider-thumb {
+        background: #f53192;
+        width: 10px;
+        border: 6px solid;
+        border-radius: 50%;
+        box-shadow: 0 5px 5px rgba(255, 26, 26, 0.22);
+      }
+
+      .music-list {
+        height: 60%;
+        overflow-x: auto;
+        overflow-y: auto;
+      }
+
+      .submit {
+        cursor: pointer;
+        background: local;
+        border-radius: 5%;
+      }
+
+      @media (max-width: 600px) {
+        .music {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .music-list::-webkit-scrollbar {
+          width: 10px;
+          background-color: antiquewhite;
+        }
+
+        .music-list::-webkit-scrollbar-thumb {
+          background-color: #fff;
+        }
+      }
+
+      .search {
+        border-radius: 20%;
+        background: local;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="music">
+      <main>
+        <em><h2>Music, Peace, Life</h2></em>
+        <em><h4>Music For The Mind, Peace For The Soul</h4></em>
+
+        <img class="img1" src="/Desktop/eDxawLq2NPZ.jpg" alt="Music" />
+        <audio class="music-player">
+          <source src="/Music/Adele-_Easy_On_Me_(lyrics)(128k).mp3" />
+        </audio>
+        <div class="title">Adele-_Easy_On_Me</div>
+        <label for="seek" title="seek">
+          <input type="range" id="progress" value="0" />
+        </label>
+        <div class="caret">
+          <img
+            src="/Code Class/caret/shuffle-solid.svg"
+            alt="shuffle"
+            class="shuffle"
+            onclick="shuffleRepeat()"
+          />
+          <img
+            src="/Code Class/caret/backward-step-solid.svg"
+            alt="previous"
+            class="previous"
+          />
+          <img
+            class="playPause"
+            src="/Code Class/caret/circle-play-regular.svg"
+            alt="play"
+          />
+          <img
+            src="/Code Class/caret/forward-step-solid.svg"
+            alt="next"
+            class="next"
+          />
+          <img
+            class="musica"
+            src="/Code Class/caret/music-solid.svg"
+            alt="music list"
+          />
+        </div>
+      </main>
+
+      <div class="music-list">
+        <label for="search">
+          <input
+            type="search"
+            name="search"
+            id="search_btn"
+            class="search"
+            placeholder="Search Musa Music"
+          />
+          <input type="submit" value="search" class="submit" />
+        </label>
+        <ul class="m-list">
+          <li class="aud">
+            <audio
+              src="/Music/(Lyrics) Emiliana - CKay ( 128kbps ).mp3"
+            ></audio>
+            <h3 class="audio-name">Emiliana - CKay</h3>
+          </li>
+          <li class="aud">
+            <audio src="/Music/001 Above All - Lenny Leblanc.mp3"></audio>
+            <h3 class="audio-name">Above All - Lenny Leblanc</h3>
+          </li>
+          <li class="aud">
+            <audio
+              src="/Music/02-Lil_Uzi_Vert-Hi_Roller_Prod_By_Maaly_Raw-1.mp3"
+            ></audio>
+            <h3 class="audio-name">Lil_Uzi_Vert-Hi_Roller_Prod_By_Maaly_Raw</h3>
+          </li>
+          <li class="aud">
+            <audio
+              src="/Music/Young_Thug_-_Halftime_[Official_Video](128k).m4a"
+            ></audio>
+            <h3 class="audio-name">Young_Thug_-_Halftime</h3>
+          </li>
+          <li class="aud">
+            <audio src="/Music/aitch_ed_sheeran_my_g_mp3_34752.mp3"></audio>
+            <h3 class="audio-name">Aitch,_Ed_Sheeran_-_My_G</h3>
+          </li>
+          <li class="aud">
+            <audio
+              src="/Music/dear_god_cory_asbury_to_love_a_fool_lyrics_h264_23650.mp4"
+            ></audio>
+            <h3 class="audio-name">dear_god_cory_asbury</h3>
+          </li>
+          <li class="aud">
+            <audio src="/Music/nf_happy_mp3_35041.mp3"></audio>
+            <h3 class="audio-name">nf_happy_mp3_35041.mp3</h3>
+          </li>
+          <li class="aud">
+            <audio
+              src="/Music/kizz_daniel_lie_official_video_mp3_52709.mp3"
+            ></audio>
+            <h3 class="audio-name">
+              kizz_daniel_lie_official_audio_mp3_52709.mp3
+            </h3>
+          </li>
+          <li class="aud">
+            <audio
+              src="/Music/y2mate.com - Joyner Lucas  Lil Baby  Ramen  OJ.mp3"
+            ></audio>
+            <h3 class="audio-name">Joyner Lucas Lil Baby Ramen OJ.mp3</h3>
+          </li>
+          <li class="aud">
+            <audio
+              src="/Music/nightcore_decade_of_pop_mashup_switching_vocals_adamusic_h264_25630.mp3"
+            ></audio>
+            <h3 class="audio-name">
+              Nightcore_decade_of_pop_mashup_switching_vocals_
+            </h3>
+          </li>
+          <li class="aud">
+            <audio
+              src="/Music/nightcore_cool_kids_echosmith_mp3_22599.mp3"
+            ></audio>
+            <h3 class="audio-name">nightcore_cool_kids_echosmith</h3>
+          </li>
+          <li class="aud">
+            <audio
+              src="/Music/alec_benjamin_the_water_fountain_music_video_h264_31445.mp4"
+            ></audio>
+            <h3 class="audio-name">alec_benjamin_the_water_fountain</h3>
+          </li>
+          <li class="aud">
+            <audio src="/Music/NF  The Search.mp3"></audio>
+            <h3 class="audio-name">NF The Search.mp3</h3>
+          </li>
+          <li class="aud">
+            <audio
+              src="/Music/ed_sheeran_happier_official_video_h264_37109-1.mp3"
+            ></audio>
+            <h3 class="audio-name">ed_sheeran_happier</h3>
+          </li>
+          <li class="aud">
+            <audio
+              src="/Music/YOU_DESERVE_IT_JJ._HAIRSTON_&_YOUTHFUL_PRAISE_By_EydelyWorshipLivingGodChannel.mp3"
+            ></audio>
+            <h3 class="audio-name">YOU_DESERVE_IT_JJ._HAIRSTON</h3>
+          </li>
+          <li class="aud">
+            <audio
+              src="/Music/Etana_-_Trigger_@EtanaStrongOne_Lyric_Video_-_March_2014(256k).mp3"
+            ></audio>
+            <h3 class="audio-name">Etana_-_Trigger</h3>
+          </li>
+          <li class="aud">
+            <audio src="/Music/Waves_-_Dean_Lewis_(Lyrics)(720p).mp3"></audio>
+            <h3 class="audio-name">Waves_-_Dean_Lewis</h3>
+          </li>
+          <li class="aud">
+            <audio
+              src="/Music/Dean_Lewis_-_7_Minutes_(Official_Video)(720p).mp3"
+            ></audio>
+            <h3 class="audio-name">Dean_Lewis_-_7_Minutes</h3>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const musa = document.querySelector('.playPause')
+        const song = document.querySelector('.music-player')
+        const songList = document.querySelectorAll('.music-list audio')
+        const progress = document.querySelector('#progress')
+        const img = document.querySelector('.img1')
+        const playlist = document.querySelector('.title')
+        const shuffle = document.querySelector('.shuffle')
+        let search = document.querySelector('.search')
+        const submit = document.querySelector('.submit')
+        let searchList = document.querySelectorAll('.audio-name')
+        let songPlace = song.getAttribute('src')
+        const previous = document.querySelector('.previous')
+        const next = document.querySelector('.next')
+        let currentSongIndex = 0
+
+        musa.addEventListener('click', playPause)
+        submit.addEventListener('click', Search)
+        previous.addEventListener('click', previouSong)
+        next.addEventListener('click', nextSong)
+
+        function previouSong() {
+          if (currentSongIndex > 0) {
+            currentSongIndex--
+            playCurrentSong()
+            console.log(currentSongIndex)
+          }
+        }
+        function nextSong() {
+          if (currentSongIndex < searchList.length - 1) {
+            currentSongIndex++
+            playCurrentSong()
+          }
+        }
+        function playCurrentSong() {
+          const audioElements = document.querySelectorAll('.music-list audio')
+          audioElements.forEach((audio, index) => {
+            audio.pause()
+            if (index === currentSongIndex) {
+              audio.play()
+            }
+          })
+          searchList.forEach((item, index) => {
+            if (index === currentSongIndex) {
+              playlist.innerHTML = item.innerHTML
+              songPlace = item.nextElementSibling.getAttribute('src')
+              song.src = songPlace
+              song.play()
+              musa.setAttribute(
+                'src',
+                '/Code Class/caret/circle-pause-regular.svg'
+              )
+              img.classList.add('rotate')
+            }
+          })
+        }
+
+        function Search() {
+          const searchText = search.value.toLowerCase()
+
+          searchList.forEach(item => {
+            const itemName = item.textContent.toLowerCase()
+            if (itemName.includes(searchText)) {
+              item.parentElement.style.display = 'list-item'
+            } else {
+              item.parentElement.style.display = 'none'
+            }
+          })
+        }
+
+        function activateItem(e) {
+          if (e.target.nodeName == 'LI') {
+            playlist.innerHTML = e.target.innerHTML
+            songPlace = e.target.children[0].getAttribute('src')
+            song.src = songPlace
+            musa.getAttribute('src') ===
+              '/Code Class/caret/circle-play-regular.svg'
+
+            song.play()
+            musa.setAttribute(
+              'src',
+              '/Code Class/caret/circle-pause-regular.svg'
+            )
+            img.classList.add('rotate')
+          }
+        }
+
+        function shuffleRepeat() {
+          if (
+            shuffle.getAttribute('src') ===
+            '/Code Class/caret/shuffle-solid.svg'
+          ) {
+            shuffle.setAttribute('src', '/Code Class/caret/repeat-solid.svg')
+          } else {
+            shuffle.setAttribute('src', '/Code Class/caret/shuffle-solid.svg')
+          }
+        }
+
+        function playPause() {
+          if (
+            musa.getAttribute('src') ===
+            '/Code Class/caret/circle-play-regular.svg'
+          ) {
+            song.play()
+            img.style =
+              'animation-name: rotate; animation-duration: 10s; animation-iteration-count: infinite; animation-timing-function: linear;'
+            musa.setAttribute(
+              'src',
+              '/Code Class/caret/circle-pause-regular.svg'
+            )
+          } else {
+            song.pause()
+            musa.setAttribute(
+              'src',
+              '/Code Class/caret/circle-play-regular.svg'
+            )
+            img.classList.remove('rotate')
+          }
+        }
+
+        progress.max = song.duration
+        progress.value = song.currentTime
+
+        song.addEventListener('timeupdate', () => {
+          progress.value = song.currentTime
+        })
+
+        progress.addEventListener('input', () => {
+          song.currentTime = progress.value
+          song.play()
+        })
+
+        songList.forEach(audio => {
+          audio.addEventListener('click', () => {
+            songList.forEach(aud => aud.classList.remove('active'))
+            audio.classList.add('active')
+          })
+        })
+      })
+    </script>
+  </body>
+</html>
