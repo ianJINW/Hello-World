@@ -63,9 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
       img.style = 'rotate 10s infinite linear'
     }
   }
-  songList.forEach(e => {
-    e.addEventListener('click', activateItem)
-  })
+
+  list.addEventListener('click', activateItem)
 
   element.forEach(e => {
     e.addEventListener('click', displayChange)
