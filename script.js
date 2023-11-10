@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     progress.value = song.currentTime
     if (progress.max) {
       img.style.animation = ''
+      musa.removeAttribute('class')
+      musa.setAttribute('class', 'fas fa-pause')
     }
   })
 
